@@ -1,0 +1,109 @@
+{% extends 'base_empleado.html' %}
+
+{% block content %}
+    <div class="container-fluid">
+        <div class="row" style="margin-top: 1%">
+            <div class="col-lg-2">
+            </div>
+            <div class="col-lg-8">
+                <form method="post" id="form-cliente">
+                    {% csrf_token %}
+                    <div class="card card-default">
+                        <div class="card-header">
+                            <h3 class="card-title">
+                                <i class="fas fa-plus"></i>
+                                {{ title }}
+                            </h3>
+                        </div>
+                        <div class="card-body">
+
+                            <div class="form-group">
+                                <i>Rut empresa</i>
+                                <input type="text" name="rut_empresa" class="form-control"
+                                       placeholder="Ingrese rut de la empresa">
+                            </div>
+                            <div class="form-group">
+                                <i>Nombre Empresa</i>
+                                <input type="text" name="nombre_empresa" class="form-control"
+                                       placeholder="Ingrese nombre de la empresa">
+                            </div>
+                            <div class="form-group">
+                                <i>Razon Social</i>
+                                <input type="text" name="razon_social" class="form-control"
+                                       placeholder="Ingrese razon social de la empresa">
+                            </div>
+                            <div class="form-group">
+                                <i>Direccion</i>
+                                <input type="text" name="direccion_empresa" class="form-control"
+                                       placeholder="Ingrese dirección de la empresa">
+                            </div>
+                            <div class="form-group">
+                                <i>Telefono</i>
+                                <input type="text" name="telefono_empresa" class="form-control"
+                                       placeholder="Ingrese telefono de la empresa">
+                            </div>
+                            <div class="form-group">
+                                <i>Otro medio de contacto</i>
+                                <input type="text" name="contacto_empresa" class="form-control"
+                                       placeholder="Ingrese otro medio de contacto">
+                            </div>
+                            <div class="form-group">
+                                <i>Correo empresa</i>
+                                <input type="email" name="correo_empresa" class="form-control"
+                                       placeholder="Ingrese correo o email de la empresa">
+                            </div>
+                            <div class="form-group">
+                                <i>Fecha ingreso empresa</i>
+                                <input type="text" name="created_at" id="fecha_creacion" disabled value="{{ hoy }}"
+                                       class="form-control">
+                            </div>
+
+                        </div>
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-primary btn-flat">
+                                <i class="fas fa-save"> Añadir Cliente</i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="col-lg-2">
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascript %}
+    <script type="application/javascript">
+        $(function () {
+            $('#form-cliente').on('submit', function (e) {
+                e.preventDefault();
+                var parametros = $(this).serializeArray();
+                console.log(parametros);
+                $.ajax({
+                    url: '/empleado/gestionclientes/',
+                    type: 'POST',
+                    data: parametros,
+                    dataType: 'json'
+                })
+                    .done(function (data) {
+                        if (!data.hasOwnProperty('error')) {
+                            alert("Cliente añadido");
+                            location.href = '/empleado/listado-clientes/'
+                            return false;
+                        }else{
+                            alert("Error al tratar de añadir el cliente\n"+data['error'])
+
+                        }
+                    })
+                    .fail(function (data) {
+                        alert("error" + data);
+
+                    })
+                    .always(function (data) {
+                    });
+            })
+        })
+
+    </script>
+{% endblock %}

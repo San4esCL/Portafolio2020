@@ -1,0 +1,51 @@
+body{
+    /* esto cargara la imagen y hara que no se repita, esta quedara de fondo completo en la pag */
+    background: url(../img/wallpaper.jpg) no-repeat center center fixed;
+    background-size: cover;
+}
+
+.seccion{
+    margin: 0 auto;
+    margin-top: 25%;
+    padding: 0;
+}
+
+.modal-content{
+    background-color: rgb(72, 79, 90);
+    opacity: 0.90;
+    padding: 0 20px;
+    box-shadow: 0px 0px 3px rgb(255, 255, 255);
+}
+
+.imagen-icono{
+    /* aqui centro la imagen en el margen del borde */
+    margin-top: -50px;
+    margin-bottom: 40px;
+}
+
+.form-group input{
+    height: 40px;
+    font-size: 15px;
+    border: 0;
+    padding-left: 40px;
+    border-radius: 15px;
+}
+
+.ideses1{
+    font-family: "Font Awesome \ 5 Free";
+    position: absolute;
+    margin-top: 1px;
+    left: 30px;
+    font-size: 25px;
+    padding-top: 12px;
+}
+
+.ideses2{
+    color: black;
+    position: absolute;
+    margin-top: -37px;
+    left: 30px;
+    font-size: 25px;
+    padding-top: 10px;
+
+}

@@ -1,0 +1,38 @@
+<section class="container-fluid">
+  <div class="row">
+    <div class="col-lg-12">
+      <h2 style="text-align: center;"><b>&nbsp;&nbsp;Listado usuarios</b></h2>
+      <hr>
+      <div class="container_table box-title table-responsive" style="width: 100%">
+        <div class="container_table box-title table-responsive" style="width: 100%">
+          <form class="form-horizontal well">
+            <table id="tabla" class="table table-dark table-striped table-bordered dt-responsive nowrap" style="width:100%">
+              <thead>
+                <tr>
+                  <th class="table-dark" scope="col"><p>ID Usuario</p></th>
+                  <th class="table-dark" scope="col"><p>Nombre Usuario</p></th>
+                  <th class="table-dark" scope="col"><p>Contraseña Usuario</p></th>
+                  <th class="table-dark" scope="col"><p>ID Tipo Usuario</p></th>
+                  <th class="table-dark" scope="col"><p>ID Estado Usuario</p></th>
+                </tr>
+              </thead>
+              {% for usu in usua %}
+              <thead>
+                <tr>
+                  <th class="table-dark" scope="col"><p>{{ usua.id_usuario}}</p></th>
+                  <th class="table-dark" scope="col"><p>{{ usua.nombre_usuario}}</p></th>
+                  <th class="table-dark" scope="col"><p>{{ usua.passwd_usuario}}</p></th>
+                  <th class="table-dark" scope="col"><p>{{ usua.id_tipo_usuario}}</p></th>
+                  <th class="table-dark" scope="col"><p>{{ usua.id_estado_usuario}}</p></th>
+                </tr>
+              </thead>
+              {% endfor %}
+            </table>
+          </form>
+        </div>
+<!-- **************************************************************************-->
+            
+<!-- **************************************************************************-->
+    </div>
+  </div>
+</section>

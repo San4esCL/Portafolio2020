@@ -1,0 +1,132 @@
+{% extends 'base_empleado.html' %}
+{% block content %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+                {% if prod %}
+                    <form action="POST" name="formulario" id="form-pedido">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-tittle">Selecciona los Productos</h3>
+                            </div>
+
+                            <div class="card-body table-responsive">
+                                <table class="table">
+                                    <tr class="bg-gradient-dark">
+                                        <th>Seleccionar</th>
+                                        <th>ID</th>
+                                        <th>Producto</th>
+                                        <th>Familia Producto</th>
+                                        <th>Precio Bruto</th>
+                                        <th>Stock Actual</th>
+                                        <th>Cantidad</th>
+                                    </tr>
+                                    {% for foo in prod %}
+
+                                        <tr>
+                                            <td><input type="checkbox" class="checkprod" name="id_producto"
+                                                       value="{{ foo.id_producto }}"></td>
+                                            <td>{{ foo.id_producto }}</td>
+                                            <td>{{ foo.nombre_producto }}</td>
+                                            <td>{{ foo.tipo_familia }}</td>
+                                            <td>{{ foo.precio_bruto }}</td>
+                                            <td>{{ foo.stock }}</td>
+                                            <td><input class="form-control inputcant" type="number"
+                                                       value="1" name="cantidad" min="1"></td>
+                                        </tr>
+                                    {% endfor %}
+
+                                </table>
+                                <button type="submit" class="btn btn-success">Siguiente</button>
+                            </div>
+                        </div>
+                    </form>
+
+
+                {% else %}
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-tittle">Error</h3>
+                        </div>
+                        <div class="card-body"><i>No hay productos asociados a este proveedor</i></div>
+                    </div>
+                {% endif %}
+
+            </div>
+            <div class="col-md-2"></div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascript %}
+    <script type="application/javascript">
+
+        function getCookie(name) {
+            let cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                const cookies = document.cookie.split(';');
+                for (let i = 0; i < cookies.length; i++) {
+                    const cookie = cookies[i].trim();
+                    // Does this cookie string begin with the name we want?
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+
+        const csrftoken = getCookie('csrftoken');
+
+        function csrfSafeMethod(method) {
+            // these HTTP methods do not require CSRF protection
+            return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+        }
+
+        $.ajaxSetup({
+            beforeSend: function (xhr, settings) {
+                if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+                    xhr.setRequestHeader("X-CSRFToken", csrftoken);
+                }
+            }
+        });
+
+
+        var pathname = window.location.pathname;
+        $("input[name='cantidad']").prop('disabled', 'true');
+        $(".checkprod").change(function () {
+            $next = $(this).closest('tr').find('[name=cantidad]');
+            $next.prop('disabled', !this.checked);
+        });
+        $('#form-pedido').on('submit', function (e) {
+            e.preventDefault();
+            var cantprod = $('.checkprod').filter(':checked').length;
+            if (cantprod > 0) {
+                var parametros = $(this).serializeArray();
+                console.log(parametros);
+                $.ajax({
+                    url: pathname,
+                    type: 'POST',
+                    data: parametros,
+                    dataType: 'json'
+                }).done(function (data) {
+                    if (!data.hasOwnProperty('error')) {
+                        alert("Pedido realizado con exito, sera redirigido al listado de pedidos");
+                        location.href = '/empleado/listado-pedidos/'
+                        return false;
+                    } else {
+                        alert("Error al tratar de crear un pedido, error\n" + data['error'])
+
+                    }
+
+                })
+            } else {
+                alert('Debes seleccionar un producto almenos para realizar un pedido');
+            }
+
+
+        })
+    </script>
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends 'base_empleado.html' %}
+
+{% block content %}
+    <div class="container-fluid">
+        <div class="row" style="margin-top: 1%">
+            <div class="col-lg-1">
+            </div>
+            <div class="col-lg-10 col-md-12">
+                <h2 style="text-align: center;"><b>Listado de Proveedores</b></h2>
+                {% if viewprov %}
+                <table class="table table-responsive-sm table-bordered table-striped">
+                    <tr>
+                        <th><p>ID</p></th>
+                        <th><p>Proveedor</p></th>
+                        <th><p>Rubro</p></th>
+                        <th><p>Telefono<p></th>
+                        <th><p>Direccion</p></th>
+                        <th><p>Email</p></th>
+                        <th><p>Estado</p></th>
+                        <th><p>N° Pedidos Vigentes</p></th>
+                    </tr>
+                    <tbody>
+                    {% for foo in viewprov %}
+                        <tr>
+                            <td scope="row"><p>{{ foo.id_proveedor }}</p></td>
+                            <td><p>{{ foo.nombre_prov }}</p></td>
+                            <td><p>{{ foo.rumbo_prov }}</p></td>
+                            <td><p>{{ foo.fono_prov }}</p></td>
+                            <td><p>{{ foo.direccion_prov }}</p></td>
+                            <td><p>{{ foo.email_prov }}</p></td>
+                            <td><p>{{ foo.estado_prov }}</p></td>
+                            <td><p>{{ foo.cant_pedidos }}</p></td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+                {% else %}
+                <h3 style="text-align: center">No hay proveedores en el sistema</h3>
+                {% endif %}
+
+
+
+            </div>
+            <div class="col-lg-1">
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,114 @@
+{% extends 'base_empleado.html' %}
+
+{% block content %}
+    <div class="container-fluid">
+        <div class="row" style="margin-top: 1%">
+            <div class="col-lg-2">
+            </div>
+            <div class="col-lg-8">
+                <form method="post" id="form-proveedor">
+                    {% csrf_token %}
+                    <div class="card-gray">
+                        <div class="card-header">
+                            <h3 class="card-title">
+                                <i class="fas fa-plus"></i>
+                                Gestion Proveedores
+                            </h3>
+                        </div>
+                        <div class="card-body" style="background-color: white;border-radius: 1%">
+                            <div class="row">
+                                <div class="col-md-6 form-group">
+                                    <i>Nombre Proveedor</i>
+                                    <input type="text" minlength="3" name="nombre_prov" class="form-control"
+                                           placeholder="Ingrese nombre del proveedor">
+                                </div>
+                                <div class="col-md-6 form-group">
+                                    <i>Rubro del proveedor</i>
+                                    <select name="id_rumbo_prov" class="form-control">
+                                        {% for foo in rubro %}
+                                            <option value="{{ foo.id_rumbo_prov }}">{{ foo.rumbo_prov }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                                <div class="col-md-6 form-group">
+                                    <i>Direccion </i>
+                                    <input type="text" min="1" name="direccion_prov" class="form-control"
+                                           placeholder="Ingrese direccion del proveedor o de su bodega">
+                                </div>
+                                <div class="col-md-6 form-group">
+                                    <i>Telefono contacto</i>
+                                    <input type="text" min="1" name="fono_prov" class="form-control"
+                                           placeholder="Ingrese telefono de contacto del proveedor">
+                                </div>
+                                <div class="col-md-6 form-group">
+                                    <i>Correo</i>
+                                    <input type="email" name="email_prov" class="form-control"
+                                           placeholder="Correo electronico del proveedor">
+                                </div>
+                                <div class="col-md-6 form-group">
+                                    <i>Fecha ingreso</i>
+                                    <input type="text" name="created_at" id="fecha_creacion" disabled value="{{ hoy }}"
+                                           class="form-control">
+                                </div>
+                                <div class="col-md-12 form-group">
+                                    <i>Estado Producto</i>
+                                    <select name="id_estadoprov" class="form-control">
+                                        {% for foo in estadoprov %}
+                                            <option value="{{ foo.id_estadoprov }}">{{ foo.estado_prov }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+
+                            </div>
+
+
+                        </div>
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-primary btn-flat">
+                                <i class="fas fa-save"> Añadir Proveedor</i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="col-lg-2">
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascript %}
+    <script type="application/javascript">
+        $(function () {
+            $('#form-proveedor').on('submit', function (e) {
+                e.preventDefault();
+                var parametros = $(this).serializeArray();
+                console.log(parametros);
+                $.ajax({
+                    url: '/empleado/gestion-proveedores/',
+                    type: 'POST',
+                    data: parametros,
+                    dataType: 'json'
+                })
+                    .done(function (data) {
+                        if (!data.hasOwnProperty('error')) {
+                            alert("Proveedor añadido");
+                            location.href = '/empleado/listado-proveedores/'
+                            return false;
+
+                        } else {
+                            alert("Error al tratar de añadir el proveedor\n" + data['error'])
+
+                        }
+                    })
+                    .fail(function (data) {
+                        alert("error" + data['error']);
+
+                    })
+                    .always(function (data) {
+                    });
+            })
+        })
+
+    </script>
+{% endblock %}

@@ -1,0 +1,298 @@
+{% extends 'base_empleado.html' %}
+
+{% block content %}
+    {% load static %}
+    <div class="container-fluid">
+        <div class="row" style="margin-top: 1cm">
+            {% if huesp %}
+                <div class="col-md-1"></div>
+                <div id="divuno" class="col-md-4">
+                    <div class="card">
+                        <div class="card-header bg-success">Informacion</div>
+                        <div class="card-body">
+                            {% for foo in clienteinfo %}
+                                <i>Cliente</i>
+                                <input disabled type="text" class="form-control" value="{{ foo.empresa }}">
+                                <i>Rut</i>
+                                <input disabled type="text" class="form-control" value="{{ foo.rut }}">
+                                <i>Dirección</i>
+                                <input disabled type="text" class="form-control" value="{{ foo.direccion }}">
+                                <i>Fecha de ingreso al sistema</i>
+                                <input disabled type="text" class="form-control" value="{{ foo.ingreso }}">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <i>Contratos Vigentes</i>
+                                        <input disabled type="text" class="form-control"
+                                               value="{{ foo.contratos_vigentes }}">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <i>Contratos No Vigentes</i>
+                                        <input disabled type="text" class="form-control"
+                                               value="{{ foo.contratos_novigentes }}">
+                                    </div>
+                                </div>
+                                <i>Cantidad de huespedes asociados</i>
+                                <input disabled type="text" class="form-control" value="{{ foo.cant_huespedes }}">
+                                <i>Huespedes asociados a un contrato vigente</i>
+                                <input disabled type="text" class="form-control" value="{{ foo.huespedes_vigentes }}">
+                            {% endfor %}
+
+                        </div>
+                        <div class="card-footer"></div>
+                    </div>
+                </div>
+                <div id="divdos" class="col-md-6">
+                    <form id="form-huespedes" action="" method="post">
+                        <input name="accion" value="posthuesp" type="hidden">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">Seleccionar los huespedes que seran asociados al contrato</h3>
+                            </div>
+                            <!-- /.card-header -->
+                            <div class="card-body table-responsive p-0">
+                                <table class="table">
+                                    <tr>
+                                        <th scope="col">Seleccionar</th>
+                                        <th scope="col">ID</th>
+                                        <th scope="col">Rut</th>
+                                        <th scope="col">Nombres</th>
+                                        <th scope="col">Fecha Nacimiento</th>
+                                    </tr>
+                                    <tbody>
+                                    {% for foo in huesp %}
+                                        <tr>
+                                            <td>
+                                                <div class="form-check">
+                                                    <input class="form-check-input checkhuesp" name="id_huesped"
+                                                           type="checkbox"
+                                                           value="{{ foo.id_huesped }}">
+                                                </div>
+                                            </td>
+                                            <td>{{ foo.id_huesped }}</td>
+                                            <td>{{ foo.rut_huesped }}</td>
+                                            <td>{{ foo.nombres }}</td>
+                                            <td>{{ foo.fecha_nacimiento }}</td>
+                                        </tr>
+                                    {% endfor %}
+
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- /.card-body -->
+                        </div>
+                        <!-- /.card -->
+                        <button type="submit" class="btn btn-info"><i>Finalizar</i></button>
+                    </form>
+                </div>
+                <div class="col-md-1"></div>
+
+
+                <!-- Una vez seleccionado los huespedes se continua con el div de tipo contrato y las habitacion -->
+                <div id="divcontinuar" style="display: none" class="col-md-10">
+                    <form id="form-habitaciones" action="" method="post">
+                        <input id="canthuesp" type="hidden" name="cant_huesp">
+                        <div class="row">
+
+                            <div class="col-md-3 form-group">
+                                <i>Seleccione el tipo de contrato</i>
+                                <select name="id_tipo_contrato" class="form-control">
+                                    {% for foo in tipocon %}
+                                        <option value="{{ foo.id_tipo_contrato }}">{{ foo.tipo_contrato }}</option>
+                                    {% endfor %}
+                                </select>
+                                <i>Ingrese el dia que iniciará el contrato</i>
+                                <input id="fechainicio" name="fecha_inicio" class="form-control" type="date">
+                                <div class="contratopredefinido">
+                                    <i>Ingrese cantidad de dias que durará el contrato</i>
+                                    <input class="form-control" min="1" name="cant_dias" type="number" value="1">
+                                </div>
+                            </div>
+                            {% if habidisp %}
+                                <div id="disponibles" class="col-md-8 form-group">
+
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h3 class="card-title">Asocia las habitaciones del contrato</h3>
+                                        </div>
+                                        <!-- /.card-header -->
+                                        <div class="card-body table-responsive p-0">
+                                            <table class="table">
+                                                <tr>
+                                                    <th scope="col">Seleccionar</th>
+                                                    <th scope="col">ID</th>
+                                                    <th scope="col">Tipo Habitacion</th>
+                                                    <th scope="col">Precio Habitacion</th>
+                                                    <th scope="col">Baño privado</th>
+                                                </tr>
+                                                <tbody>
+                                                {% for foo in habidisp %}
+                                                    <tr>
+                                                        <td>
+                                                            <div class="form-check">
+                                                                <input class="form-check-input checkhabi"
+                                                                       name="id_habitacion"
+                                                                       type="checkbox"
+                                                                       value="{{ foo.id_habitacion }}">
+                                                            </div>
+                                                        </td>
+                                                        <td>{{ foo.id_habitacion }}</td>
+                                                        <td>{{ foo.tipo_habitacion }}</td>
+                                                        <td>{{ foo.precio_hab }}</td>
+                                                        <td>{{ foo.banno_privado }}</td>
+                                                    </tr>
+                                                {% endfor %}
+                                                </tbody>
+                                            </table>
+                                        </div>
+
+                                        <!-- /.card-body -->
+                                    </div>
+                                    <!-- /.card -->
+                                    <button type="submit" class="btn btn-info"><i>Siguiente</i></button>
+
+                                </div>
+                            {% endif %}
+                            <div id="sindisponibles" class="col-md-8" style="display: none">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h3 class="card-title">Error...</h3>
+                                    </div>
+                                    <div class="card-body">
+                                        <i>No hay habitaciones suficientes para los huespedes :(</i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-1"></div>
+                        </div>
+                    </form>
+                </div>
+                <!-- Una vez continuado con la seleccion de habitaciones y mas datos se procede al ultimo paso -->
+                <div id="divfinalizando" style="display: none" class="col-md-10">
+
+                </div>
+            {% else %}
+                <div class="col-md-4"></div>
+                <div class="col-md-4" style="margin-top: 1%">
+                    <div class="card  mb-3">
+                        <div class="card-header bg-secondary">
+                            <h3><i>Ha ocurrido un error...</i></h3>
+                        </div>
+                        <div class="card-body">
+                            <i>Este Cliente no tiene huespedes asociados para realizar un proceso de contrato</i>
+                            <div>
+                                <img class="card-img-bottom" src="{% static 'img/error.png' %}">
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <a href="/empleado/gestion-contrato/">
+                                <button class="btn btn-info"><i>Volver</i></button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4"></div>
+            {% endif %}
+
+        </div>
+    </div>
+{% endblock %}
+{% block javascript %}
+    <script type="application/javascript">
+
+        function getCookie(name) {
+            let cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                const cookies = document.cookie.split(';');
+                for (let i = 0; i < cookies.length; i++) {
+                    const cookie = cookies[i].trim();
+                    // Does this cookie string begin with the name we want?
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+
+        const csrftoken = getCookie('csrftoken');
+
+        function csrfSafeMethod(method) {
+            // these HTTP methods do not require CSRF protection
+            return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+        }
+
+        $.ajaxSetup({
+            beforeSend: function (xhr, settings) {
+                if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+                    xhr.setRequestHeader("X-CSRFToken", csrftoken);
+                }
+            }
+        });
+
+        today = moment().format('YYYY-MM-DD');
+        $('#fechainicio').val(today);
+
+        $('#form-huespedes').on('submit', function (e) {
+            e.preventDefault();
+            var canthabi =
+            {{ habidisp.count }}
+            var Parametros = $(this).serializeArray();
+            var canthuesp = $('.checkhuesp').filter(':checked').length;
+            console.log(Parametros);
+            console.log('Tamaño array huespedes: ' + canthuesp);
+
+            console.log('Habitaciones disponibles: ' + canthabi);
+            var pathname = window.location.pathname;
+            if (canthuesp < 1) {
+                alert('Debes seleccionar algun huesped para realizar un contrato');
+            } else {
+                document.getElementById('divuno').style.display = 'none';
+                document.getElementById('divdos').style.display = 'none';
+                document.getElementById('divcontinuar').style.display = 'block';
+                if (canthabi < canthuesp) {
+                    document.getElementById('sindisponibles').style.display = 'block';
+                    document.getElementById('disponibles').style.display = 'none';
+                }
+            }
+            $('#canthuesp').val(canthuesp);
+            $('#form-habitaciones').on('submit', function (e) {
+                e.preventDefault();
+                var habis = $(this).serializeArray();
+                var cantidadhab = $('.checkhabi').filter(':checked').length;
+                console.log(habis);
+                console.log('Tamaño array habitaciones:' + habis.length);
+                console.log('count habitaciones selected: ' + cantidadhab)
+                if ($('#fechainicio').val() == "") {
+                    alert("La fecha no puede quedar vacia!");
+                } else {
+                    if (canthuesp == cantidadhab) {
+                        console.log('paso');
+                        listas = Parametros.concat(habis);
+                        $.ajax({
+                            url: pathname,
+                            type: 'POST',
+                            data: listas,
+                            dataType: 'json'
+                        }).done(function (data) {
+                            if (!data.hasOwnProperty('error')) {
+                                alert("Contrato creado con exito, ahora sera redirigido hacia el listado de contratos");
+                                location.href = '/empleado/listado-contrato/'
+                                return false;
+                            } else {
+                                alert("Error al tratar de crear un contrato, error\n" + data['error'])
+
+                            }
+                        })
+
+                    } else if (canthuesp != cantidadhab) {
+                        alert('Debes seleccionar la cantidad de habitaciones correspondiente para los ' + canthuesp + ' huespedes');
+                    }
+                }
+
+            })
+        })
+
+
+    </script>
+{% endblock %}

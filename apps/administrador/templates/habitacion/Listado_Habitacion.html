@@ -1,0 +1,102 @@
+{% extends 'baseadmin.html' %}
+
+
+{% block content %}
+<section class="container-fluid">
+  <div class="row">
+    <div class="col-lg-2">
+
+    </div>
+    <div class="col-lg-8">
+      <h2 style="text-align: center;"><b>&nbsp;Listado de habitaciones</b></h2>
+            <table id="tabla" class="table table-responsive-sm table-striped table-bordered nowrap" style="width:100%">
+              <thead class="thead-dark">
+                <tr>
+                  <th class="" style="width: 1%" scope="col"><p>ID Habitacion</p></th>
+                  <th class="" style="width: 5%" scope="col"><p>Tipo Habitacion</p></th>
+                  <th class="" scope="col"><p>Precio</p></th>
+                  <th class="" style="width: 5%" scope="col"><p>Tamaño</p></th>
+                  <th class="" scope="col"><p>Baño privado</p></th>
+                  <th class="" scope="col"><p>Estado Habitacion</p></th>
+                  <th class="" scope="col"><p>Acciones</p></th>
+                </tr>
+              </thead>
+
+              <tbody>
+              {% for a in habitaciones %}
+                <tr>
+                  <td class="" scope="col"><p>{{ a.id_habitacion}}</p></td>
+                  <td class="" scope="col"><p>{{ a.tipo_habitacion}}</p></td>
+                  <td class="" scope="col"><p>{{ a.Precio}}</p></td>
+                  <td class="" scope="col"><p>{{ a.tamanno_hab}}</p></td>
+                  <td class="" scope="col"><p>{{ a.banno}}</p></td>
+                  <td class="" scope="col"><p>{{ a.estado_habitacion}}</p></td>
+                  <td>
+                    <div class="btn-group">
+                      <a href="/administrador/updhabitacion/{{a.id_habitacion}}" type="button" class="btn btn-primary ion-edit"></a>
+                        <button type="submit" class="btn btn-danger btnTest ion-trash-a" value="{{a.id_habitacion}}"></button>
+                    </div>
+                  </td>
+                </tr>
+              {% endfor %}
+              </tbody>
+
+            </table>
+<!-- **************************************************************************-->
+
+  </div>
+    <div class="col-lg-2">
+
+  </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block javascript %}
+<script type="application/javascript">
+ tabl = $(document).ready(function(){
+        $('#tabla').DataTable({
+        });
+    });
+function getCookie(name) {
+       var cookieValue = null;
+       if (document.cookie && document.cookie != '') {
+           var cookies = document.cookie.split(';');
+           for (var i = 0; i < cookies.length; i++) {
+               var cookie = jQuery.trim(cookies[i]);
+               // Does this cookie string begin with the name we want?
+               if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                   cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                   break;
+               }
+           }
+       }
+       return cookieValue;
+}
+var csrftoken = getCookie('csrftoken');
+    $(function () {
+    $('.btnTest').on('click',function () {
+      if ( confirm("Esta seguro de desactivar esta habitacion?") == true){
+
+      var valores = $(this).parents("tr").find("td")[0].innerText;
+     $.ajax({
+       url: '/administrador/listahabitacion/',
+       type: 'POST',
+       data: { id:valores, csrfmiddlewaretoken : '{{ csrf_token }}' },
+       dataType: 'json'
+     })
+      .done(function(data) {
+        console.log(data);
+        alert("Habitacion desactivada!");
+        location.reload();
+      })
+      .fail(function(data) {
+        alert("error");
+      })
+      .always( function () {
+      })
+      }
+    })
+    })
+</script>
+{% endblock %}

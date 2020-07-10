@@ -1,0 +1,43 @@
+{% extends 'base_empleado.html' %}
+
+{% block content %}
+    <div class="container-fluid">
+        <div class="row" style="margin-top: 1%">
+            <div class="col-lg-1">
+            </div>
+            <div class="col-lg-10">
+                <h1>Listado</h1>
+                <table class="table table-responsive-sm table-striped table-bordered nowrap" style="width:100%">
+                <thead class="thead-dark">
+                    <tr>
+                        <th><p>ID Cliente</p></th>
+                        <th><p>Rut Empresa</p></th>
+                        <th><p>Nombre Empresa</p></th>
+                        <th><p>Razon Social</p></th>
+                        <th><p>Direccion</p></th>
+                        <th><p>Telefono</p></th>
+                        <th><p>Correo</p></th>
+                        <th><p>Fecha Creacion</p></th>
+                    </tr>
+                </thead>
+                    <tbody>
+                    {% for a in clientes %}
+                     <tr>
+                        <td><p>{{ a.id_cliente }}</p></td>
+                        <td><p>{{ a.rut_empresa }}</p></td>
+                        <td><p>{{ a.nombre_empresa }}</p></td>
+                        <td><p>{{ a.razon_social }}</p></td>
+                        <td><p>{{ a.direccion_empresa }}</p></td>
+                        <td><p>{{ a.telefono_empresa }}</p></td>
+                        <td><p>{{ a.correo_empresa }}</p></td>
+                        <td><p>{{ a.created_at }}</p></td>
+                     </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-lg-1">
+            </div>
+        </div>
+    </div>
+{% endblock %}

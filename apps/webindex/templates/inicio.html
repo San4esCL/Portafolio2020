@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="es-cl">
+
+<head>
+  {# Archivos #}
+  {% load static %}
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Hostal Doña Clarita - Inicio</title>
+  <meta content="" name="descriptison">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="{% static 'assets/img/favicon.png' %}" rel="icon">
+  <link href="{% static 'assets/img/apple-touch-icon.png' %}" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Poppins:300,300i,400,400i,600,600i,700,700i|Satisfy|Comic+Neue:300,300i,400,400i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="{% static '/assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static '/assets/vendor/icofont/icofont.min.css' %}" rel="stylesheet">
+  <link href="{% static '/assets/vendor/boxicons/css/boxicons.min.css' %}" rel="stylesheet">
+  <link href="{% static '/assets/vendor/animate.css/animate.min.css' %}" rel="stylesheet">
+  <link href="{% static '/assets/vendor/venobox/venobox.css' %}" rel="stylesheet">
+  <link href="{% static '/assets/vendor/owl.carousel/assets/owl.carousel.min.css' %}" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="{% static 'assets/css/style.css' %}" rel="stylesheet">
+
+</head>
+
+<body>
+
+  <!-- ======= Top Bar ======= -->
+  <section id="topbar" class="d-none d-lg-flex align-items-center fixed-top">
+    <div class="container text-right">
+        <a target="_blank" href="https://api.whatsapp.com/send?phone=56994727174&text=Hostal%20Clarita%20Contacto"><i class="icofont-phone"></i> +56 9 94727174</a>
+      <i class="icofont-clock-time icofont-rotate-180"></i> Lun-Vie: 09:00 AM - 23:00 PM
+      
+    </div>
+  </section>
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="fixed-top d-flex align-items-center">
+    <div class="container d-flex align-items-center">
+
+      <div class="logo mr-auto">
+        <h1 class="text-light"><a href="/"><span>Hostal Clarita</span></a></h1>
+        <!-- Uncomment below if you prefer to use an image logo -->
+        <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+        
+        {% if user.is_authenticated  %}
+        <a href="/accounts/logout/"><button  type="button" class="btn btn-outline-warning">  Cerrar Sesión  </button></a>
+        <p class="text-light">Usuario: {{ user.username}}</p>
+        <a href="/administrador">Sitio Administrativo</a>
+        {% else %}
+        <a href="/accounts/login/"><button  type="button" class="btn btn-outline-warning">  Iniciar Sesión  </button></a>
+        {% endif %}
+        
+        
+        
+      </div>
+
+      <nav class="nav-menu d-none d-lg-block">
+        <ul>
+          <li class="active"><a href="#">Inicio</a></li>
+          <li><a href="#about">Acerca</a></li>
+          <li><a href="#specials">Especial</a></li>
+          <li><a href="#events">Eventos</a></li>
+          <li><a href="#chefs">Cocineros</a></li>
+          <li><a href="#gallery">Galeria</a></li>
+          
+          
+          
+        </ul>
+        
+      </nav><!-- .nav-menu -->
+
+    </div>
+  </header><!-- End Header -->
+
+  <!-- ======= Hero Section ======= -->
+  <section id="hero">
+    <div class="hero-container">
+      <div id="heroCarousel" class="carousel slide carousel-fade" data-ride="carousel">
+
+        <ol class="carousel-indicators" id="hero-carousel-indicators"></ol>
+
+        <div class="carousel-inner" role="listbox">
+
+          <!-- Slide 1 -->
+          <div class="carousel-item active" >
+            <div class="carousel-background"><img src="{% static '/assets/img/slide/slide-1.jpg' %}" alt=""></div>
+            <div class="carousel-container">
+              <div class="carousel-content">
+                <h2 class="animated fadeInDown"><span>Hostal</span> Clarita</h2>
+                <p class="animated fadeInUp">Bienvenido a Hostal Doña Clarita, somos un servicio de hospedaje y descanso, con una trayectoria que supera los 10 años en servicio al cliente, ofrecemos una gran gama de productos y distintos servicios para maximizar su relajo, para ello puede redirijirse mediante los botones ubicados en la parte inferior.</p>
+                <div>
+                  <a href="#menu" class="btn-menu animated fadeInUp scrollto">Nuestro Menu</a>
+                  <a href="#book-a-table" class="btn-book animated fadeInUp scrollto">Ponerse en Contacto</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Slide 2 -->
+          <div class="carousel-item" >
+            <div class="carousel-background"><img src="{% static '/assets/img/slide/slide-2.jpg' %}" alt=""></div>
+            <div class="carousel-container">
+              <div class="carousel-content">
+                <h2 class="animated fadeInDown">Tu hostal preferido</h2>
+                <p class="animated fadeInUp"> Bienvenido a Hostal Doña Clarita, somos un servicio de hospedaje y descanso, con una trayectoria que supera los 10 años en servicio al cliente, ofrecemos una gran gama de productos y distintos servicios para maximizar su relajo, para ello puede redirijirse mediante los botones ubicados en la parte inferior.</p>
+                <div>
+                  <a href="#menu" class="btn-menu animated fadeInUp scrollto">Nuestro Menu</a>
+                  <a href="#book-a-table" class="btn-book animated fadeInUp scrollto">Ponerse en Contacto</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Slide 3 -->
+          <div class="carousel-item" ">
+            <div class="carousel-background"><img src="{% static '/assets/img/slide/slide-3.jpg' %}" alt=""></div>
+            <div class="carousel-container">
+              <div class="carousel-content">
+                <h2 class="animated fadeInDown">No te arrepentiras ! ! !</h2>
+                <p class="animated fadeInUp"> Si nos visitas te aseguramos el mejor hospedaje y que no te arrepentiras con tu empresa.</p>
+                <div>
+                  <a href="#menu" class="btn-menu animated fadeInUp scrollto">Nuestro Menu</a>
+                  <a href="#book-a-table" class="btn-book animated fadeInUp scrollto">Ponerse en Contacto</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <a class="carousel-control-prev" href="#heroCarousel" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon icofont-simple-left" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+
+        <a class="carousel-control-next" href="#heroCarousel" role="button" data-slide="next">
+          <span class="carousel-control-next-icon icofont-simple-right" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+
+      </div>
+    </div>
+  </section><!-- End Hero -->
+
+  <main id="main">
+
+    <!-- ======= About Section ======= -->
+    <section id="about" class="about">
+      <div class="container-fluid">
+
+        <div class="row">
+
+          <div class="col-lg-5 align-items-stretch video-box" ;'>
+            <a href="https://www.youtube.com/watch?v=B2rs_IpXrvo" class="venobox play-btn mb-4" data-vbtype="video" data-autoplay="true"></a>
+          </div>
+
+          <div class="col-lg-7 d-flex flex-column justify-content-center align-items-stretch">
+
+            <div class="content">
+              <h3>Quienes somos? <strong>Averigualo ahora mismo</strong></h3>
+              <p>
+                Somos parte del equipo de hostal de Doña Clarita, nuestra meta y objetivo, es brindar la mayor satisfaccion a nuestros clientes, que gozen de un relajo sin preocupaziones y encargarnos de que su estadia en la instancia sea lo mas gratificante posible
+              </p>
+              <p class="font-italic">
+                Para ello destinamos nuestros esfuerszos en ofrecerle los mejores servicios en:
+              </p>
+              <ul>
+                <li><i class="bx bx-check-double"></i> 1)Servicio de Cafeteria abierta desde las 8:00 AM hasta las 12:00 AM.</li>
+                <li><i class="bx bx-check-double"></i> 2)Servicio a la habitacion, con el cual no tendra que moverse mas alla de la habitacion.</li>
+                <li><i class="bx bx-check-double"></i> 3) Un lugar en el cual pueda relajarse con las distintas actividades que tenemos preparadas para su descanso.</li>
+              </ul>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section><!-- End About Section -->
+
+    <!-- ======= Whu Us Section ======= -->
+    <section id="why-us" class="why-us">
+      <div class="container">
+
+        <div class="section-title">
+          <h2>Porqué elegir<span> Nuestro Hostal</span></h2>
+          <p>Un grato ambiente familiar, servicio a empresas.</p>
+        </div>
+
+        <div class="row">
+
+          <div class="col-lg-4">
+            <div class="box">
+              <span>01</span>
+              <p>Poseemos un grato ambiente familiar, con una gama amplia de areas verdes en la cual podra relajarse en familia</p>
+            </div>
+          </div>
+
+          <div class="col-lg-4 mt-4 mt-lg-0">
+            <div class="box">
+              <span>02</span>
+              <p>Poseemos una gran variedad de servicios a ofrecerle, desde mesa de ping pong para su relajo hasta un quincho para un azado familiar</p>
+            </div>
+          </div>
+
+          <div class="col-lg-4 mt-4 mt-lg-0">
+            <div class="box">
+              <span>03</span>
+              <p>Habitaciones amplias para asegurarnos que se sienta comodo durante su hospedaje</p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section><!-- End Whu Us Section -->
+
+    <!-- ======= Menu Section ======= -->
+
+    <!-- ======= Specials Section ======= -->
+    <section id="specials" class="specials">
+      <div class="container">
+
+        <div class="section-title">
+          <h2>Ve nuestros mejores <span>Platos</span></h2>
+          <p>Unas delicias que no seras capaz de dejar un poquito y te chuparas los dedos.</p>
+        </div>
+
+        <div class="row">
+          <div class="col-lg-3">
+            <ul class="nav nav-tabs flex-column">
+              <li class="nav-item">
+                <a class="nav-link active show" data-toggle="tab" href="#tab-1">Arroz con papa</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#tab-2">Frutitas</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#tab-3">Ramen</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#tab-4">Caracolius</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#tab-5">Notch</a>
+              </li>
+            </ul>
+          </div>
+          <div class="col-lg-9 mt-4 mt-lg-0">
+            <div class="tab-content">
+              <div class="tab-pane active show" id="tab-1">
+                <div class="row">
+                  <div class="col-lg-8 details order-2 order-lg-1">
+                    <h3>Arroz con papas</h3>
+                    <p class="font-italic">Un simple arroz con papa, nada mas que contar</p>
+                    <p>Si le hechas mayo o algun condimento queda la raja</p>
+                  </div>
+                  <div class="col-lg-4 text-center order-1 order-lg-2">
+                    <img src="{% static '/assets/img/specials-1.jpg' %}" alt="" class="img-fluid">
+                  </div>
+                </div>
+              </div>
+              <div class="tab-pane" id="tab-2">
+                <div class="row">
+                  <div class="col-lg-8 details order-2 order-lg-1">
+                    <h3>Frutitas riki</h3>
+                    <p class="font-italic">Quien dijo que hacer dieta era comer mal? nada que ver, ven y prueba nuestro plato Frutitas riki y quedaras loco</p>
+                    <p>Algo mas maravilloso que el cielo, mejor que las nubes, peor que el infierno, ese es nuestro plato frutitas riki el cual no se puede hacer en ningun otro lado ya que nadie tiene la receta secreta</p>
+                  </div>
+                  <div class="col-lg-4 text-center order-1 order-lg-2">
+                    <img src="{% static '/assets/img/specials-2.jpg' %}" alt="" class="img-fluid">
+                  </div>
+                </div>
+              </div>
+              <div class="tab-pane" id="tab-3">
+                <div class="row">
+                  <div class="col-lg-8 details order-2 order-lg-1">
+                    <h3>Ramen como los japoneses?</h3>
+                    <p class="font-italic">Si lo que has leido, se que siempre has querido probar el ramen pero no tienes el dinero para viajar a japon, que harias si te contara que ...</p>
+                    <p>Tenemos un ramen hecho por nosotros?, si has leido bien, hecho totalmente por nosotros y 100% natural con los mejores fideos chinos y verduras</p>
+                  </div>
+                  <div class="col-lg-4 text-center order-1 order-lg-2">
+                    <img src="{% static '/assets/img/specials-3.jpg' %}" alt="" class="img-fluid">
+                  </div>
+                </div>
+              </div>
+              <div class="tab-pane" id="tab-4">
+                <div class="row">
+                  <div class="col-lg-8 details order-2 order-lg-1">
+                    <h3>Fuga de sabores al ver este plato, nadie sabe como pasa eso</h3>
+                    <p class="font-italic">Totalmente locos al ver este plato en nuestro menu, nuestro chef es un dios</p>
+                    <p>Para conseguir este plato se ha necesitado de ir a las mazmorras de los caracolius, los cuales son nivel muy alto pero que dan una recompensa y XP muy alta !</p>
+                  </div>
+                  <div class="col-lg-4 text-center order-1 order-lg-2">
+                    <img src="{% static '/assets/img/specials-4.jpg' %}" alt="" class="img-fluid">
+                  </div>
+                </div>
+              </div>
+              <div class="tab-pane" id="tab-5">
+                <div class="row">
+                  <div class="col-lg-8 details order-2 order-lg-1">
+                    <h3>El plato de NOTCH?</h3>
+                    <p class="font-italic">Si has leido bien, el plato del mismisimo creador de Minecraft.</p>
+                    <p>Para realizarlo hemos tenido que craftear una azada, plantar semillas y matar unos cerdos, luego cocinar la carne y meter zanahoria y patatas a la olla, una vez hecho esto la ponemos en un molde y para dentro</p>
+                  </div>
+                  <div class="col-lg-4 text-center order-1 order-lg-2">
+                    <img src="{% static '/assets/img/specials-5.jpg' %}" alt="" class="img-fluid">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section><!-- End Specials Section -->
+
+    <!-- ======= Events Section ======= -->
+    <section id="events" class="events">
+      <div class="container">
+
+        <div class="section-title">
+          <h2>Organiza tus <span>Eventos</span> En nuestro Hostal</h2>
+        </div>
+
+        <div class="owl-carousel events-carousel">
+
+          <div class="row event-item">
+            <div class="col-lg-6">
+              <img src="{% static '/assets/img/event-birthday.jpg' %}" class="img-fluid" alt="">
+            </div>
+            <div class="col-lg-6 pt-4 pt-lg-0 content">
+              <h3>Cumpleaños</h3>
+              <div class="price">
+                <p><span>$10.000</span></p>
+              </div>
+              <p class="font-italic">
+                Realiza tus cumpleaños en el mejor ambiente familiar, con mesas de juegos, quinchos, camas elasticas, canchas de futbot y muchas cosas mas !
+              </p>
+              <ul>
+                <li><i class="icofont-check-circled"></i> Disponibilidad para hasta 100 personas.</li>
+                <li><i class="icofont-check-circled"></i> Reserva con hasta 3 meses de anticipación.</li>
+                <li><i class="icofont-check-circled"></i> Para mas información dirigirse a administración del hostal.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="row event-item">
+            <div class="col-lg-6">
+              <img src="{% static 'assets/img/pary.jpg' %}" class="img-fluid" alt="">
+            </div>
+            <div class="col-lg-6 pt-4 pt-lg-0 content">
+              <h3>Fiestas Privadas</h3>
+              <div class="price">
+                <p><span>$30.000</span></p>
+              </div>
+              <p class="font-italic">
+                Ven a carretear al mejor lugar de shile, donde ocurren las mejores fiestas justo al lado del mar.
+              </p>
+              <ul>
+                <li><i class="icofont-check-circled"></i> Permitido todo tipo de sustancias y bebidas alcoholicas.</li>
+                <li><i class="icofont-check-circled"></i> Si invitas mas mujeres, la entrada sale gratis !!!.</li>
+                <li><i class="icofont-check-circled"></i> Si rompes algo lo pagas.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="row event-item">
+            <div class="col-lg-6">
+              <img src="{% static 'assets/img/event-custom.jpg' %}" class="img-fluid" alt="">
+            </div>
+            <div class="col-lg-6 pt-4 pt-lg-0 content">
+              <h3>Fiesta de la chela</h3>
+              <div class="price">
+                <p><span>$500 el vaso</span></p>
+              </div>
+              <p class="font-italic">
+                Te gusta tomar cerveza? Ven al mejor lugar donde todos toman, el que no toma no entra OJO NO ENTRAAAA
+              </p>
+              <ul>
+                <li><i class="icofont-check-circled"></i> Sin vomitar.</li>
+                <li><i class="icofont-check-circled"></i> Sin peleas.</li>
+                <li><i class="icofont-check-circled"></i> Pasarla bien.</li>
+              </ul>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section><!-- End Events Section -->
+
+
+
+    <!-- ======= Gallery Section ======= -->
+    <section id="gallery" class="gallery">
+      <div class="container-fluid">
+
+        <div class="section-title">
+          <h2>Algunas fotos desde <span>Nuestro Hostal</span></h2>
+          <p>Fotos sacadas en la hostadia, permitida por los clientes para verificar el servicio que entregamos.</p>
+        </div>
+
+        <div class="row no-gutters">
+
+          <div class="col-lg-3 col-md-4">
+            <div class="gallery-item">
+              <a href="{% static 'assets/img/gallery/gallery-1.jpg' %}" class="venobox" data-gall="gallery-item">
+                <img src="{% static 'assets/img/gallery/gallery-1.jpg' %}" alt="" class="img-fluid">
+              </a>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-4">
+            <div class="gallery-item">
+              <a href="{% static 'assets/img/gallery/gallery-2.jpg' %}" class="venobox" data-gall="gallery-item">
+                <img src="{% static 'assets/img/gallery/gallery-2.jpg' %}" alt="" class="img-fluid">
+              </a>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-4">
+            <div class="gallery-item">
+              <a href="{% static 'assets/img/gallery/gallery-3.jpg' %}" class="venobox" data-gall="gallery-item">
+                <img src="{% static 'assets/img/gallery/gallery-3.jpg' %}" alt="" class="img-fluid">
+              </a>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-4">
+            <div class="gallery-item">
+              <a href="{% static 'assets/img/gallery/gallery-4.jpg' %}" class="venobox" data-gall="gallery-item">
+                <img src="{% static 'assets/img/gallery/gallery-4.jpg' %}" alt="" class="img-fluid">
+              </a>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-4">
+            <div class="gallery-item">
+              <a href="{% static 'assets/img/gallery/gallery-5.jpg' %}" class="venobox" data-gall="gallery-item">
+                <img src="{% static 'assets/img/gallery/gallery-5.jpg' %}" alt="" class="img-fluid">
+              </a>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-4">
+            <div class="gallery-item">
+              <a href="{% static 'assets/img/gallery/gallery-6.jpg' %}" class="venobox" data-gall="gallery-item">
+                <img src="{% static 'assets/img/gallery/gallery-6.jpg' %}" alt="" class="img-fluid">
+              </a>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-4">
+            <div class="gallery-item">
+              <a href="{% static 'assets/img/gallery/gallery-7.jpg' %}" class="venobox" data-gall="gallery-item">
+                <img src="{% static 'assets/img/gallery/gallery-7.jpg' %}" alt="" class="img-fluid">
+              </a>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-4">
+            <div class="gallery-item">
+              <a href="{% static 'assets/img/gallery/gallery-8.jpg' %}" class="venobox" data-gall="gallery-item">
+                <img src="{% static 'assets/img/gallery/gallery-8.jpg' %}" alt="" class="img-fluid">
+              </a>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section><!-- End Gallery Section -->
+
+    <!-- ======= Chefs Section ======= -->
+    <section id="chefs" class="chefs">
+      <div class="container">
+
+        <div class="section-title">
+          <h2>Nuestros profesionales <span>Chefs</span></h2>
+          <p>Tenemos Chef de todo tipo, parrilleros, comidas finas, etc etc.</p>
+        </div>
+
+        <div class="row">
+
+          <div class="col-lg-4 col-md-6">
+            <div class="member">
+              <div class="pic"><img src="{% static 'assets/img/chefs/chefs-1.jpg' %}" class="img-fluid" alt=""></div>
+              <div class="member-info">
+                <h4>Walter White</h4>
+                <span>Master Chef</span>
+                <div class="social">
+                  <a href=""><i class="icofont-twitter"></i></a>
+                  <a href=""><i class="icofont-facebook"></i></a>
+                  <a href=""><i class="icofont-instagram"></i></a>
+                  <a href=""><i class="icofont-linkedin"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6">
+            <div class="member">
+              <div class="pic"><img src="{% static 'assets/img/chefs/chefs-2.jpg' %}" class="img-fluid" alt=""></div>
+              <div class="member-info">
+                <h4>Sarah Jhonson</h4>
+                <span>La divina comida</span>
+                <div class="social">
+                  <a href=""><i class="icofont-twitter"></i></a>
+                  <a href=""><i class="icofont-facebook"></i></a>
+                  <a href=""><i class="icofont-instagram"></i></a>
+                  <a href=""><i class="icofont-linkedin"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6">
+            <div class="member">
+              <div class="pic"><img src="{% static 'assets/img/chefs/chefs-3.jpg' %}" class="img-fluid" alt=""></div>
+              <div class="member-info">
+                <h4>William Anderson</h4>
+                <span>MC Donald's</span>
+                <div class="social">
+                  <a href=""><i class="icofont-twitter"></i></a>
+                  <a href=""><i class="icofont-facebook"></i></a>
+                  <a href=""><i class="icofont-instagram"></i></a>
+                  <a href=""><i class="icofont-linkedin"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section><!-- End Chefs Section -->
+
+    <!-- ======= Testimonials Section ======= -->
+    <section id="testimonials" class="testimonials">
+      <div class="container">
+
+        <div class="owl-carousel testimonials-carousel">
+
+          <div class="testimonial-item">
+            <img src="{% static 'assets/img/testimonials/testimonials-1.jpg' %}" class="testimonial-img" alt="">
+            <h3>Saul Goodman</h3>
+            <h4>Ceo &amp; Founder</h4>
+            <div class="stars">
+              <i class="icofont-star"></i>
+              <i class="icofont-star"></i>
+              <i class="icofont-star"></i>
+              <i class="icofont-star"></i>
+              <i class="icofont-star"></i>
+            </div>
+            <p>
+              <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                Vi una oportunidad de negocio en este hospital antiguo y decidi hacer un negocio, me impresiono la cantidad de enfermos que llegaban
+              <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+            </p>
+          </div>
+
+          <div class="testimonial-item">
+            <img src="{% static 'assets/img/testimonials/testimonials-2.jpg' %}" class="testimonial-img" alt="">
+            <h3>Sara Wilsson</h3>
+            <h4>Designer</h4>
+            <div class="stars">
+              <i class="icofont-star"></i>
+              <i class="icofont-star"></i>
+              <i class="icofont-star"></i>
+              <i class="icofont-star"></i>
+              <i class="icofont-star"></i>
+            </div>
+            <p>
+              <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                La comida fue muy buenarda, nazi 10 de 10 asi que decidi trabajar como diseñadora y fue lo mejor :D
+              <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+            </p>
+          </div>
+
+          <div class="testimonial-item">
+            <img src="{% static 'assets/img/testimonials/testimonials-3.jpg' %}" class="testimonial-img" alt="">
+            <h3>Jena Karlis</h3>
+            <h4>Store Owner</h4>
+            <div class="stars">
+              <i class="icofont-star"></i>
+              <i class="icofont-star"></i>
+              <i class="icofont-star"></i>
+              <i class="icofont-star"></i>
+              <i class="icofont-star"></i>
+            </div>
+            <p>
+              <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                La gente aqui no tenia como comprar productos, decidi empezar a vender y asociarme con el CEO
+              <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+            </p>
+          </div>
+
+          <div class="testimonial-item">
+            <img src="{% static 'assets/img/testimonials/testimonials-4.jpg' %}" class="testimonial-img" alt="">
+            <h3>Matt Brandon</h3>
+            <h4>Freelancer</h4>
+            <div class="stars">
+              <i class="icofont-star"></i>
+              <i class="icofont-star"></i>
+              <i class="icofont-star"></i>
+              <i class="icofont-star"></i>
+              <i class="icofont-star"></i>
+            </div>
+            <p>
+              <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                Desarrollar este sistema fue algo WOW, nunca me habia aburrido tanto con algo tan fome pero fue buena la paga
+              <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+            </p>
+          </div>
+
+          <div class="testimonial-item">
+            <img src="{% static 'assets/img/testimonials/testimonials-5.jpg' %}" class="testimonial-img" alt="">
+            <h3>John Larson</h3>
+            <h4>Entrepreneur</h4>
+            <div class="stars">
+              <i class="icofont-star"></i>
+              <i class="icofont-star"></i>
+              <i class="icofont-star"></i>
+              <i class="icofont-star"></i>
+              <i class="icofont-star"></i>
+            </div>
+            <p>
+              <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                Mentalidad de tiburon, he llegado aqui en base a comentarios y la verdad es que este sitio nunca deja de sorprenderme
+              <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+    </section><!-- End Testimonials Section -->
+
+
+
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer">
+    <div class="container">
+      <h3>Delicia</h3>
+      <p>Te aseguramos que si has llegado hasta aca, no te arrepentiras de visitarnos!.</p>
+      <div class="social-links">
+        <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+        <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+        <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+        <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
+        <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+      </div>
+      <div class="copyright">
+        &copy; Copyright <strong><span>Doña Clarita</span></strong>. Derechos Reservados
+      </div>
+      
+    </div>
+  </footer><!-- End Footer -->
+
+  <a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="{% static 'assets/vendor/jquery/jquery.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/jquery.easing/jquery.easing.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/php-email-form/validate.js' %}"></script>
+  <script src="{% static 'assets/vendor/jquery-sticky/jquery.sticky.js' %}"></script>
+  <script src="{% static 'assets/vendor/isotope-layout/isotope.pkgd.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/venobox/venobox.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/owl.carousel/owl.carousel.min.js' %}"></script>
+
+  <!-- Template Main JS File -->
+  <script src="{% static 'assets/js/main.js' %}"></script>
+
+</body>
+
+</html>

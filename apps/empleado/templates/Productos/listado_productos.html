@@ -1,0 +1,78 @@
+{% extends 'base_empleado.html' %}
+
+{% block content %}
+    <div class="container-fluid">
+        <div class="row" style="margin-top: 1%">
+            <div class="col-lg-1">
+            </div>
+            <div class="col-lg-10 col-md-12">
+                <h2 style="text-align: center;"><b>Listado de Productos Disponibles</b></h2>
+                {% if prod_disp %}
+                <table class="table table-responsive-sm table-bordered table-striped">
+                    <tr>
+                        <th><p>ID</p></th>
+                        <th><p>Producto</p></th>
+                        <th style="width: 7%"><p>Precio Bruto</p></th>
+                        <th style="width: 7%"><p>Precio Venta<p></th>
+                        <th style="width: 1%"><p>Stock</p></th>
+                        <th style="width: 11%"><p>Stock Critico</p></th>
+                        <th><p>Familia</p></th>
+                        <th style="width: 11%"><p>Estado</p></th>
+                    </tr>
+                    <tbody>
+                    {% for foo in prod_disp %}
+                        <tr>
+                            <th scope="row"><p>{{ foo.id }}</p></th>
+                            <td><p>{{ foo.nombre_producto }}</p></td>
+                            <td><p>{{ foo.precio_bruto }}</p></td>
+                            <td><p>{{ foo.precio_venta }}</p></td>
+                            <td><p>{{ foo.stock }}</p></td>
+                            <td><p>{{ foo.stock_critico }}</p></td>
+                            <td><p>{{ foo.familia }}</p></td>
+                            <td><p>{{ foo.estado }} <i class="ion-android-checkmark-circle"></i></p></td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+                {% else %}
+                <h3 style="text-align: center">No hay productos en esta categoria</h3>
+                {% endif %}
+
+                <h2 style="text-align: center;"><b>Listado Productos No Disponibles / Criticos</b></h2>
+                {% if prod_nodisp %}
+                <table class="table table-responsive-sm table-bordered table-striped">
+                    <tr>
+                        <th><p>ID</p></th>
+                        <th><p>Producto</p></th>
+                        <th style="width: 7%"><p>Precio Bruto</p></th>
+                        <th style="width: 7%"><p>Precio Venta<p></th>
+                        <th style="width: 1%"><p>Stock</p></th>
+                        <th style="width: 11%"><p>Stock Critico</p></th>
+                        <th><p>Familia</p></th>
+                        <th style="width: 15%"><p>Estado</p></th>
+                    </tr>
+                    <tbody>
+                    {% for foo in prod_nodisp %}
+                        <tr>
+                            <th scope="row"><p>{{ foo.id }}</p></th>
+                            <td><p>{{ foo.nombre_producto }}</p></td>
+                            <td><p>{{ foo.precio_bruto }}</p></td>
+                            <td><p>{{ foo.precio_venta }}</p></td>
+                            <td><p>{{ foo.stock }}</p></td>
+                            <td><p>{{ foo.stock_critico }}</p></td>
+                            <td><p>{{ foo.familia }}</p></td>
+                            <td><p>{{ foo.estado }} <i class="ion-alert-circled"></i></p></td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+                {% else %}
+                <h3 style="text-align: center">No hay productos en esta categoria</h3>
+                {% endif %}
+
+            </div>
+            <div class="col-lg-1">
+            </div>
+        </div>
+    </div>
+{% endblock %}

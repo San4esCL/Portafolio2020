@@ -1,0 +1,82 @@
+{% extends 'baseadmin.html' %}
+{% block content %}
+<section class="container-fluid">
+    <div class="row" style="margin-top: 5%;">
+      <div class="col-lg-2">
+  
+      </div>
+      <div class="col-lg-8">
+        <h2 style="text-align: center;"><b>&nbsp;&nbsp;Gestor de habitación</b></h2>
+        <hr>
+        <div class="container_table box-title" style="width: 100%">
+          <form method="POST" action="/administrador/adminhabit/">
+            {% csrf_token %}
+            <div class="form-row">
+              <div class="col-sm-1">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="inputGroupPrepend">ID Habitacion</span>
+                  <input type="text" readonly="readonly" id="txtidhab" size="5%">
+                </div>
+              </div>
+              <div class="col-sm-11">
+                
+              </div>
+  
+              <div class="form-group col-lg-12 " style="text-align: center;margin-top: 10px;margin-bottom: 10px;">
+                <label class="control-label" for="tipo_habitacion">Seleccione Tipo de Habitacion</label>
+                <br>
+                <select name="cbotipo" class="custom-select custom-select-sm">
+                  <option selected>Seleccionar . . . </option>
+  
+                  {% for m in tiposhab %}
+  
+                  <option value="{{m.id_tipohabitacion}}"> {{m.tipo_habitacion}}</option>
+  
+                  {% endfor %}
+  
+                </select>
+              </div>
+              <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <label for="txttamhab">Tamaño Habitación</label>
+                <input type="text" class="form-control" id="txtTam" name="txtTam" required placeholder="EJ 4X4">
+              </div>
+              <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <label for="Contrasenia">Precio Habitacion</label>
+                <input type="number" class="form-control" id="txtPrecio" name="txtPrecio" minlength="3" required
+                  placeholder="EJ 6900">
+              </div>
+              <div class="form-group col-lg-6 " style="text-align: center;margin-top: 10px;margin-bottom: 10px;">
+                <label class="control-label" for="tipo_habitacion">Contiene Baño Privado?</label>
+                <select name="cbobano" class="custom-select custom-select-sm">
+                  <option selected>Seleccionar . . . </option>
+                  <option value="1">Si</option>
+                  <option value="0">No</option>
+                </select>
+              </div>
+              <div class="form-group col-lg-6 " style="text-align: center;margin-top: 10px;margin-bottom: 10px;">
+                <label class="control-label" for="tipo_habitacion">Estado de la Habitacion</label>
+                <br>
+                <select name="cboestado" class="custom-select custom-select-sm">
+                  <option selected>Seleccionar . . .</option>
+                  {% for m in estadohab %}
+                  <option value="{{m.id_estado_habitacion}}"> {{m.estado_habitacion}}</option>
+                  {% endfor %}
+                </select>
+              </div>
+              <div class="col-lg-4">
+              </div>
+              <div class="col-lg-4" style="margin-top: 3%;text-align: center;">
+                <input type="submit" class="btn btn-success" value="Guardar" id="">
+              </div>
+              <div class="col-lg-4">
+              </div>
+              </div>
+            </div>
+          </form>
+        </div>
+        
+        </div>
+      <div class="col-lg-2">
+      </div>
+</section>
+{% endblock %}

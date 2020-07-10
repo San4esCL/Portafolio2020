@@ -1,0 +1,126 @@
+{% extends 'base_empleado.html' %}
+
+{% block content %}
+    <div class="container-fluid">
+        <div class="row" style="margin-top: 1%">
+            <div class="col-lg-2">
+            </div>
+            <div class="col-lg-8">
+                <form method="post" id="form-productos">
+                    {% csrf_token %}
+                    <div class="card-gray">
+                        <div class="card-header">
+                            <h3 class="card-title">
+                                <i class="fas fa-plus"></i>
+                                Gestion Productos
+                            </h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-6 form-group">
+                                    <i>Nombre Producto</i>
+                                    <input type="text" minlength="3" name="nombre_producto" class="form-control"
+                                           placeholder="Ingrese nombre del producto">
+                                </div>
+                                <div class="col-md-6 form-group">
+                                    <i>Familia Producto</i>
+                                    <select name="id_familia" class="form-control">
+                                        {% for foo in famprod %}
+                                            <option value="{{ foo.id_familia }}">{{ foo.tipo_familia }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                                <div class="col-md-6 form-group">
+                                    <i>Precio Bruto</i>
+                                    <input type="number" min="1" name="precio_bruto" class="form-control"
+                                           placeholder="Ingrese precio bruto del producto">
+                                </div>
+                                <div class="col-md-6 form-group">
+                                    <i>Precio Venta</i>
+                                    <input type="number" min="1" name="precio_venta" class="form-control"
+                                           placeholder="Ingrese precio al que venderá el producto">
+                                </div>
+                                <div class="col-md-6 form-group">
+                                    <i>Stock</i>
+                                    <input type="number" name="stock" min="0" class="form-control"
+                                           placeholder="Cantidad de stock al momento de añadir el producto">
+                                </div>
+                                <div class="col-md-6 form-group">
+                                    <i>Stock Critico</i>
+                                    <input type="number" name="stock_critico" min="1" class="form-control"
+                                           placeholder="Ingrese cual será el stock critico de este producto">
+                                </div>
+                                <div class="col-md-6 form-group">
+                                    <i>Estado Producto</i>
+                                    <select name="id_estado_producto" class="form-control">
+                                        {% for foo in estaprod %}
+                                            <option value="{{ foo.id_estado_producto }}">{{ foo.estado_producto }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                                <div class="col-md-6 form-group">
+                                    <i>Proveedor</i>
+                                    <select name="id_proveedor" class="form-control">
+                                        {% for foo in prov %}
+                                            <option value="{{ foo.id_proveedor }}">{{ foo.nombre_prov }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                                <div class="col-md-4 form-group">
+                                    <i>Fecha ingreso producto</i>
+                                    <input type="text" name="created_at" id="fecha_creacion" disabled value="{{ hoy }}"
+                                           class="form-control">
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-primary btn-flat">
+                                <i class="fas fa-save"> Añadir Producto</i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="col-lg-2">
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascript %}
+    <script type="application/javascript">
+        $(function () {
+            $('#form-productos').on('submit', function (e) {
+                e.preventDefault();
+                var parametros = $(this).serializeArray();
+                console.log(parametros);
+                $.ajax({
+                    url: '/empleado/gestion-productos/',
+                    type: 'POST',
+                    data: parametros,
+                    dataType: 'json'
+                })
+                    .done(function (data) {
+                        if (!data.hasOwnProperty('error')) {
+                            alert("Producto añadido");
+                            location.href = '/empleado/listado-productos/'
+                            return false;
+
+                        } else {
+                            alert("Error al tratar de añadir el producto\n" + data['error'])
+
+                        }
+                    })
+                    .fail(function (data) {
+                        alert("error" + data['error']);
+
+                    })
+                    .always(function (data) {
+                    });
+            })
+        })
+
+    </script>
+{% endblock %}

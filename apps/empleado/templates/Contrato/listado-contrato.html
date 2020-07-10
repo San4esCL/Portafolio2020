@@ -1,0 +1,55 @@
+{% extends 'base_empleado.html' %}
+
+{% block content %}
+    {% load static %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+                {% if contratos %}
+                    <div class="card">
+                        <div class="card-body table-responsive p-0">
+                            <table class="table">
+                                <tr>
+                                    <th scope="col">ID</th>
+                                    <th scope="col">Empresa</th>
+                                    <th scope="col">Tipo Contrato</th>
+                                    <th scope="col">Fecha inicio</th>
+                                    <th scope="col">Fecha Vencimiento</th>
+                                    <th scope="col">Cant Huespedes</th>
+                                    <th scope="col">Estado Contrato</th>
+                                    <th scope="col">Acciones</th>
+                                </tr>
+                                {% for foo in contratos %}
+                                    <tr>
+                                        <td>{{ foo.id_contrato }}</td>
+                                        <td>{{ foo.empresa }}</td>
+                                        <td>{{ foo.tipo_contrato }}</td>
+                                        <td>{{ foo.fecha_inicio_contrato }}</td>
+                                        <td>{{ foo.fecha_vencimiento }}</td>
+                                        <td>{{ foo.cant_huesp }}</td>
+                                        <td>{{ foo.estado_contrato }}</td>
+                                        <td><a href="" class="ion-search"></a></td>
+                                    </tr>
+                                {% endfor %}
+                            </table>
+                        </div>
+                    </div>
+                {% else %}
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-tittle">Error...</h3>
+                        </div>
+                        <div class="card-body">
+                            <h5>No hay contratos para listar actualmente, para crear uno dirijase hacia Gestion
+                                Contrato</h5>
+                        </div>
+                    </div>
+                {% endif %}
+
+
+            </div>
+            <div class="col-md-2"></div>
+        </div>
+    </div>
+{% endblock %}

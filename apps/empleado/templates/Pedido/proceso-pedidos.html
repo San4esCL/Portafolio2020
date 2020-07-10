@@ -1,0 +1,49 @@
+{% extends 'base_empleado.html' %}
+
+{% block content %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-tittle">Pedidos</h3>
+                    </div>
+                    <div class="card-body">Los pedidos son una parte importante del sistema, se realizan a los proveedores y forman parte de un proceso de negocio de
+                        nuestra empresa ya que para satisfacer las necesidades de los clientes tendremos productos a la venta</div>
+                    {% if prov %}
+                        <div class="card-body table-responsive">
+                        <table class="table">
+                            <tr>
+                                <th>ID</th>
+                                <th>Proveedor</th>
+                                <th>Rubro</th>
+                                <th>Telefono</th>
+                                <th>Pedidos Pendientes</th>
+                                <th>Acciones</th>
+                            </tr>
+                            {% for foo in prov %}
+                            <tr>
+                                <td>{{ foo.id_proveedor }}</td>
+                            <td>{{ foo.nombre_prov }}</td>
+                            <td>{{ foo.rumbo_prov }}</td>
+                            <td>{{ foo.fono_prov }}</td>
+                            <td>{{ foo.cant_pedidos }}</td>
+                            <td><a href="/empleado/pedido/realizar/{{ foo.id_proveedor }}/" class="btn btn-info"><i>Iniciar Pedido</i></a></td>
+                            </tr>
+                            {% endfor %}
+
+                        </table>
+                    </div>
+                    {% else %}
+                        <div class="card-body">
+                        <i>No hay proveedores para listar y realizar un pedido</i>
+                        </div>
+                    {% endif %}
+                    <div class="card-footer"></div>
+                </div>
+            </div>
+            <div class="col-md-2"></div>
+        </div>
+    </div>
+{% endblock %}

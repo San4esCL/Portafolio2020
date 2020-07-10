@@ -1,0 +1,112 @@
+{% extends 'baseadmin.html' %}
+{% block content %}
+<section class="container-fluid">
+    <div class="row" style="margin-top: 1%;">
+      <div class="col-lg-2">
+  
+      </div>
+      <div class="col-lg-8">
+        <h2 style="text-align: center;"><b>&nbsp;&nbsp;Gestor de Empleados</b></h2>
+        <hr>
+        <div class="container_table box-title" style="width: 100%">
+          <form method="POST" action="/administrador/adminemp/">
+            {% csrf_token %}
+            <div class="form-row">
+              <div class="col-sm-1">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="inputGroupPrepend">ID Empleado</span>
+                  <input type="text" readonly="readonly" id="txtipemp" size="5%">
+                </div>
+              </div>
+              <div class="col-sm-11">
+                
+              </div>
+              <div class="form-group col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <label for="txttamhab">Rut del empleado</label>
+                <input type="text" class="form-control" id="rut_emp" name="rut_emp" minlength="9" required placeholder="Formato 12.345.678-9">
+              </div>
+              <div class="form-group col-lg-6 col-md-6 col-sm-12 " style="text-align: center;margin-top: 10px;margin-bottom: 10px;">
+                <label class="control-label" for="tipo_empleado">Seleccione Tipo de Empleado</label>
+                <br>
+                <select name="cbotipo" class="custom-select custom-select-sm">
+                  <option selected>Seleccionar . . . </option>
+  
+                  {% for m in tiposemp %}
+  
+                  <option value="{{m.id_tipoempleado}}"> {{m.tipo_empleado}}</option>
+  
+                  {% endfor %}
+  
+                </select>
+              </div>
+              <div class="col-lg-12 col-md-12 col-sm-12">
+                <h3>Nombres del empleado</h3>
+              </div>
+              <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <label for="">Primer Nombre</label>
+                <input type="text" class="form-control" id="txtPrecio" name="primernombre" minlength="2" required
+                  placeholder="Ejemplo Jose    .    .    .">
+              </div>
+              <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <label for="">Segundo Nombre</label>
+                <input type="text" class="form-control" id="txtPrecio" name="segundonombre" minlength="2" required
+                  placeholder="Antonio">
+              </div>
+              <div class="col-lg-12 col-md-12 col-sm-12" style="margin-top: 2%;">
+                <h3>Apellidos del empleado</h3>
+              </div>
+              <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <label for="">Apellido Paterno</label>
+                <input type="text" class="form-control" id="txtPrecio" name="primerapellido" minlength="2" required
+                  placeholder="Ejemlo Gonzalez . . .">
+              </div>
+              <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <label for="">Apellido Materno</label>
+                <input type="text" class="form-control" id="txtPrecio" name="segundoapellido" minlength="2" required
+                  placeholder="Muñoz">
+              </div>
+              <div class="col-lg-12 col-sm-12" style="margin-top: 1%;"></div>
+              <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <label for="">Email</label>
+                <input type="email" class="form-control" id="email_emp" name="email_emp" minlength="5" required
+                  placeholder="email@example.com">
+              </div>
+              <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <label for="">Fono de contacto</label>
+                <input type="text" class="form-control" id="fono_emp" name="fono_emp" minlength="11" required
+                  placeholder="+56 9 ">
+              </div>
+              <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <label for="">Fecha de nacimiento</label>
+                <input type="date" class="form-control" id="fechanac" name="fechanac" minlength="16" required>
+              </div>
+              <div class="form-group col-lg-6 col-md-6 col-sm-12 " style="text-align: center;margin-top: 10px;margin-bottom: 10px;">
+                <label class="control-label" for="tipo_habitacion">Seleccione Tipo de Empleado</label>
+                <br>
+                <select name="cboestado" class="custom-select custom-select-sm">
+  
+                  {% for a in estadoemp %}
+  
+                  <option value="{{a.id_estadoempleado}}"> {{a.estado_empleado}}</option>
+  
+                  {% endfor %}
+  
+                </select>
+              </div>
+
+
+              <div class="col-lg-4" style="margin-top: 3%;text-align: center;">
+                <input type="submit" class="btn btn-success" value="Guardar" id="">
+              </div>
+              <div class="col-lg-4">
+              </div>
+              </div>
+            </div>
+          </form>
+        </div>
+        
+        </div>
+      <div class="col-lg-2">
+      </div>
+</section>
+{% endblock %}

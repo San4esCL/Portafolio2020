@@ -1,0 +1,90 @@
+<section class="content">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box">
+                <div class="box-header">
+                    <table id="tblTitulo1" class="table1" width="100%">
+                      <tr>
+                        <td>
+                          <h2><b>&nbsp;&nbsp;Usuarios</b></h2></td>
+                      </tr>
+                    </table>
+<hr>
+					<div class="container_table box-title table-responsive" style="width: 100%">
+					  <form class="form-horizontal well" id="forms-registro">
+							<div class="form-group">
+									<label class="col-sm-3 control-label" for="input01">ID User</label>
+									<div class="col-sm-3">
+										<input notnull="" title="Código" type="text" class="input-large required " id="txId" name="txCodigo" maxlength="10" value="0">
+									</div>
+								</div>
+						  <div class="form-group">
+   							  <label class="col-sm-3 control-label" for="input01">Nombre Usuario</label>
+   							  <div class="col-sm-3">
+   								  <input notnull="" title="Código" type="text" class="input-large required " id="txuser" name="txCodigo" maxlength="10" value="0">
+   							  </div>
+   						  </div>
+						  <div class="form-group">
+							  <label class="col-sm-3 control-label" for="input01">Correo Usuario<br>Habitacion</label>
+							  <div class="col-sm-3">
+								  <input notnull="" title="Descripción" type="text" class="input-large required " id="txcorreo" name="txDescrip" maxlength="100" value="0">
+							  </div>
+						  </div>
+						 <div class="form-group">
+   							  <label class="col-sm-3 control-label" for="input01">Fecha Nacimiento usuario</label>
+   							  <div class="col-sm-3">
+									<input name="fechanac_usuario" id="txfecnac" class="input-large required" type="date" value="">
+   							  </div>
+                 </div>
+              <div class="form-group">
+   							  <label class="col-sm-3 control-label" for="input01">Telefono Usuario</label>
+   							  <div class="col-sm-3">
+   								  <input notnull="" title="Valor" type="text" class="input-large required " id="txfono" name="txdorm" maxlength="100" value="0">
+   							  </div>
+                 </div>
+              <div class="form-group">
+   							  <label class="col-sm-3 control-label" for="input01">Fecha registro usuario</label>
+   							  <div class="col-sm-3">
+   								  <input notnull="" title="Valor" type="text" class="input-large required " id="txfecre" name="txtam" maxlength="100" value="0">
+   							  </div>
+   						  </div>
+						 <div class="form-actions">
+			 			  <table width="100%" border="0"><tbody><tr><td width="100%" align="right">
+         <button type="button" name="btLeer"  id="btLeer" align="right" class="btn  btn-success" onclick="javascript:JsUsuario.ULeer();"><i class="fa fa-floppy-save"></i> Leer</button>
+         <button type="button" name="btActualizar"  id="btActualizar" align="right" class="btn  btn-success" onclick="javascript:JsUsuario.UActualizar();"><i class="fa fa-floppy-save"></i> Actualizar</button>
+         <button type="button" name="btInsertar"  id="btInsertar" align="right" class="btn  btn-success" onclick="javascript:JsUsuario.UInsertar();"><i class="fa fa-floppy-save"></i> Insertar</button>
+         <button type="button" name="btCancelar"  id="btCancelar" align="right" class="btn  btn-success" onclick="javascript:JsUsuario.UCancelar();"><i class="fa fa-floppy-save"></i> Cancelar</button>
+         <button type="button" name="btListar"  id="btListar" align="right" class="btn  btn-success" onclick="javascript:JsUsuario.UlistarProductos();"><i class="fa fa-floppy-save"></i> Listar</button>
+			 			  </td></tr></tbody></table>
+
+			 			</div>
+
+						  </form>
+					  </div>
+
+<!-- **************************************************************************-->
+
+            <div class="container_table box-title table-responsive" style="width: 100%">
+              <form class="form-horizontal well" id="forms-registro">
+            <table id="tabla"
+              class="table table-striped table-bordered dt-responsive nowrap" style="width:100%"
+            >
+              <thead>
+               <tr>
+                 <th data-field="id">ID</th>
+                 <th data-field="nombre_usuario">Usuario</th>
+                 <th data-field="correo_usuario">Correo</th>
+                 <th data-field="fecnac">Fecha Nacimiento</th>
+                 <th data-field="fono_usuario">Telefono</th>
+               </tr>
+             </thead>
+            </table>
+          </form>
+        </div>
+<!-- **************************************************************************-->
+
+  </div>
+</div>
+</div>
+</div>
+</section>

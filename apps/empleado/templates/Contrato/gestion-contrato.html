@@ -1,0 +1,93 @@
+{% extends 'base_empleado.html' %}
+
+{% block content %}
+    {% load static %}
+    <div class="container-fluid">
+        <form action="" method="post" id="formproceso">
+            <div class="row">
+                <div class="col-md-2"></div>
+
+                <div id="primerdiv" class="col-md-8">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 style="text-align: center">Contratos</h3>
+                        </div>
+                        <div class="card-body"><i>Los contratos son una parte muy importante de nuestro negocio, donde
+                            se concentra la información de los clientes cuando desean contratar nuestros servicios
+                            mediante
+                            los cuales podremos hacer los calculos
+                            de las facturas y poder generar informes sobre el hostal para una mejor toma de desiciones.
+                            <br><br>Para añadir un contrato seleccione abajo si es un usuario existente en nuestras
+                            bases de
+                            datos o desea añadir un
+                            cliente para posteriormente realizar un contrato con el cliente.</i>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-3"></div>
+                                <div class="col-md-6 card-info" style="width:400px;">
+                                    <div class="card-header"><h2>Cliente Existente</h2></div>
+                                    <img class="card-img-top" src="{% static '/img/cliente.png' %}" style="height: 7cm">
+                                    <div style="text-align: center" class="card-footer">
+                                        <a id="btnagendar" class="btn btn-primary">Agendar contrato</a>
+                                    </div>
+                                </div>
+                                <div class="col-md-3"></div>
+                            </div>
+
+x
+                        </div>
+                    </div>
+                </div>
+                <div style="display: none" id="seconddiv" class="col-md-8">
+                    <table id="tablacli" class="table table-responsive-sm table-bordered table-striped">
+                        <tr>
+                            <th>ID</th>
+                            <th>Empresa</th>
+                            <th>Rut Empresa</th>
+                            <th>Contacto</th>
+                            <th>Accion</th>
+                        </tr>
+                        <tbody>
+                        {% for foo in cli %}
+                            <tr>
+                                <td>{{ foo.id_cliente }}</td>
+                                <td>{{ foo.nombre_empresa }}</td>
+                                <td>{{ foo.rut_empresa }}</td>
+                                <td>{{ foo.contacto_empresa }}</td>
+
+                                <td>
+                                    <a href="/empleado/proceso-contrato/cliente/{{ foo.id_cliente }}/"><button type="button" class="btn btn-info"><i>Iniciar Proceso</i></button></a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+
+                        </tbody>
+                    </table>
+                    <button type="button" id="volver1" class="btn btn-danger">Volver</button>
+                </div>
+                <div class="col-md-2"></div>
+            </div>
+        </form>
+
+
+    </div>
+    </div>
+
+
+{% endblock %}
+{% block javascript %}
+    <script type="application/javascript">
+        $(function () {
+            $("#btnagendar").click(function () {
+                document.getElementById('primerdiv').style.display = "none";
+                document.getElementById('seconddiv').style.display = "block";
+            })
+            $('#volver1').click(function () {
+                document.getElementById('seconddiv').style.display = "none";
+                document.getElementById('primerdiv').style.display = "block";
+            })
+        });
+
+    </script>
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends 'base_empleado.html' %}
+{% block content %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-tittle">Huespedes</h3>
+                    </div>
+                    {% if huesp %}
+                        <div class="card-body table-responsive">
+                            <table class="table">
+                                <tr>
+                                    <th>Rut</th>
+                                    <th>Nombres</th>
+                                    <th>Fecha Nacimiento</th>
+                                    <th>Empresa</th>
+                                    <th>Telefono Empresa</th>
+                                </tr>
+                                {% for foo in huesp %}
+                                    <tr>
+                                        <td>{{ foo.rut_huesped }}</td>
+                                        <td>{{ foo.nombres }}</td>
+                                        <td>{{ foo.fechanac }}</td>
+                                        <td>{{ foo.empresa }}</td>
+                                        <td>{{ foo.fonoempresa }}</td>
+                                    </tr>
+                                {% endfor %}
+
+                            </table>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="col-md-2"></div>
+        </div>
+    </div>
+{% endblock %}
